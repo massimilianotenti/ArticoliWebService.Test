@@ -1,0 +1,103 @@
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# Rider
+.idea/
+
+## User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+[Bb]in/
+[Oo]bj/
+
+# Visual Studio 2019 cache/options
+.vs/
+
+# MSTest test Results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# NUnit
+*.nunit
+**/packages.config
+
+# Visual Studio code coverage results
+*.coverage
+*.coveragexml
+
+# NCover
+*.ncover
+
+# DotCover
+*.dotcover
+
+# Test-related
+*.trx
+
+# Microsoft User Secrets
+secrets.json
+
+# Dotnet local tools
+.store/
+
+# Windows files
+Thumbs.db
+ehthumbs.db
+
+# macOS files
+.DS_Store
+
+# Paket dependency manager
+.paket/paket.exe
+paket-files/
+
+# FAKE - F# Make
+.fake/
+
+# F#
+*.fsx
+
+# F# Interactive
+fsi.exe.config
+fsi.exe.options
+
+# FSharp project files
+*.fsproj.user
+
+# Entity Framework
+*.edmx.diagram
+
+# ReSharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# Project files
+*.csproj.user
+*.vbproj.user
+
+# Other
+*.log
+*.tlog
+*.tmp
+*.bak
+*.cache
+
+# Ignore appsettings.Development.json
+**/appsettings.Development.json
