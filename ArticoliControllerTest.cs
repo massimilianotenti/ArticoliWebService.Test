@@ -13,13 +13,13 @@ namespace ArticoliWebService.Test
 {
     public class ArticoliControllerTest
     {
-/*        [Fact]
+        [Fact]
         public async Task TestArticoliByCode()
         {
             string codeArt = "000001501";
 
             var dbContext = DbContextMocker.alphaShopDbContext();
-            var controller = new ArticoliController(new ArticoliRepository(dbContext));
+            var controller = new ArticoliController(new ArticoliRepository(dbContext), MapperMocker.GetMapper());
 
             var response = await controller.GetArticoliByCode(codeArt) as ObjectResult;
             var value = response.Value as ArticoliDto;
@@ -32,23 +32,24 @@ namespace ArticoliWebService.Test
         }
 
         [Fact]
-        public async Task TestErrrArticoliByCode()
+        public async Task TestErrArticoliByCode()
         {
             string codeArt = "00000150A";
 
             var dbContext = DbContextMocker.alphaShopDbContext();
-            var controller = new ArticoliController(new ArticoliRepository(dbContext));
+            var controller = new ArticoliController(new ArticoliRepository(dbContext), MapperMocker.GetMapper());
 
             var response = await controller.GetArticoliByCode(codeArt) as ObjectResult;
-            var value = response.Value as ArticoliDto;
+            var value = response.Value as ErrMsg;
 
             dbContext.Dispose();
 
             Assert.Equal(404, response.StatusCode);
-            Assert.Null(value);
-            Assert.Equal("Non è stato trovato l'articolo con il codice 00000150A", response.Value);
+            Console.WriteLine(response.Value);
+            Console.WriteLine(value.message);
+            Assert.Equal("Non è stato trovato l'articolo con il codice 00000150A", value.message);
         }
-*/
+
         // È un attributo del framework di test xUnit. Indica che questo metodo è un test case che 
         // deve essere eseguito automaticamente dal test runner.
         [Fact]
@@ -131,7 +132,6 @@ namespace ArticoliWebService.Test
             Console.WriteLine(errMsg.message);
             Assert.Equal($"Non è stato trovato alcun articolo con la descrizione {descrizione} e categoria {cat}", errMsg.message, ignoreCase: true);
         }
-
         
     }
 }
