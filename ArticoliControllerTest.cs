@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ArticoliWebService.Controllers;
 using ArticoliWebService.Dtos;
+using ArticoliWebService.Models;
 using ArticoliWebService.Services;
 using Microsoft.AspNetCore.Mvc;
 using Xunit;
@@ -125,13 +126,43 @@ namespace ArticoliWebService.Test
             var controller = new ArticoliController(new ArticoliRepository(dbContext), MapperMocker.GetMapper());
 
             var response = await controller.GetArticoliByDesc(descrizione, cat);
-            var notFoundResult = Assert.IsType<NotFoundObjectResult>(response.Result);     
+            var notFoundResult = Assert.IsType<NotFoundObjectResult>(response.Result);
             var errMsg = Assert.IsType<ErrMsg>(notFoundResult.Value);
 
-            Assert.Equal(404, notFoundResult.StatusCode);            
+            Assert.Equal(404, notFoundResult.StatusCode);
             Console.WriteLine(errMsg.message);
             Assert.Equal($"Non è stato trovato alcun articolo con la descrizione {descrizione} e categoria {cat}", errMsg.message, ignoreCase: true);
         }
+
+        [Fact]
+        public async Task TestSelIva()
+        {
+            using var dbContext = DbContextMocker.alphaShopDbContext();
+            var controller = new IvaController(new ArticoliRepository(dbContext), MapperMocker.GetMapper());
+
+            var response = await controller.SelIva();
+            var okResult = Assert.IsType<OkObjectResult>(response.Result);
+            var iva = Assert.IsAssignableFrom<IEnumerable<IvaDto>>(okResult.Value);
+
+            Assert.Equal(200, okResult.StatusCode);
+            Assert.True(iva.Any());
+        }
+
+        [Fact]
+        public async Task TestSelFarm()
+        {
+            using var dbContext = DbContextMocker.alphaShopDbContext();
+            var controller = new FarmAssortController(new ArticoliRepository(dbContext), MapperMocker.GetMapper());
+
+            var response = await controller.SelFamAssort();
+            var okResult = Assert.IsType<OkObjectResult>(response.Result);
+            var farm = Assert.IsAssignableFrom<IEnumerable<FamAssortDto>>(okResult.Value);
+
+            Assert.Equal(200, okResult.StatusCode);
+            Assert.True(farm.Any());
+        }
         
+        
+
     }
 }
